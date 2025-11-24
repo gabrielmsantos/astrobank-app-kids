@@ -13,7 +13,8 @@ Complete documentation for the AstroBank Kids Flutter PWA application.
 - **[API Reference](./API_REFERENCE.md)** - All API endpoints and integration details
 - **[Features Documentation](./FEATURES.md)** - Detailed feature descriptions
 
-### Deployment
+### Deployment & Configuration
+- **[Environment Configuration](./ENVIRONMENT_CONFIG.md)** - Environment-specific API setup
 - **[Deployment Guide](./DEPLOYMENT.md)** - PWA setup and deployment options
 - **[Production Checklist](./PRODUCTION_CHECKLIST.md)** - Pre-deployment verification
 
@@ -41,6 +42,7 @@ docs/
 ├── ARCHITECTURE.md             # Code structure
 ├── API_REFERENCE.md            # All API endpoints
 ├── FEATURES.md                 # Feature descriptions
+├── ENVIRONMENT_CONFIG.md       # Environment-specific setup
 ├── DEPLOYMENT.md               # PWA deployment
 ├── PRODUCTION_CHECKLIST.md     # Pre-deployment checklist
 ├── TROUBLESHOOTING.md          # Troubleshooting guide

@@ -1,6 +1,11 @@
 class AppConfig {
   // API Configuration
-  static const String apiBaseUrl = 'http://localhost:8000';
+  // Set via dart-define: --dart-define=API_BASE_URL=https://your-api.com
+  // Defaults to localhost for development
+  static const String apiBaseUrl = String.fromEnvironment(
+    'API_BASE_URL',
+    defaultValue: 'http://localhost:8000',
+  );
   static const String apiVersion = 'v1';
 
   // Customer Configuration - Hardcoded for development

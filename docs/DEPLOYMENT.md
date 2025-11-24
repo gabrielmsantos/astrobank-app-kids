@@ -406,44 +406,68 @@ sudo systemctl restart nginx
 
 ## Configuration
 
-### API Endpoint Setup
+### API Endpoint Setup (Using dart-define)
 
-**For Production:**
+Set different API endpoints for each environment using compile-time constants:
 
-Edit `lib/config/app_config.dart`:
-
-```dart
-class AppConfig {
-  static const String apiBaseUrl = 'https://your-production-api.com';
-  // NOT: 'http://localhost:3000'
-}
-```
-
-**Before Building:**
-1. Update API URL
-2. Rebuild: `flutter build web --release`
-3. Redeploy
-
-### Environment-Specific Configuration
-
-**Multiple Environments:**
-
-Create separate files:
-- `lib/config/app_config.dart` (default/local)
-- `lib/config/app_config.staging.dart`
-- `lib/config/app_config.prod.dart`
-
-**Build for Different Environments:**
+**Development (Localhost):**
 ```bash
-# Development (localhost)
+# Uses default localhost:8000
 flutter run -d web
 
-# Staging
-flutter build web --release --dart-define=ENV=staging
-
-# Production
-flutter build web --release --dart-define=ENV=prod
+# Or explicitly:
+flutter run -d web --dart-define=API_BASE_URL=http://localhost:8000
 ```
+
+**Staging Environment:**
+```bash
+flutter build web --release \
+  --dart-define=API_BASE_URL=https://staging-api.astrobank.com
+```
+
+**Production Environment:**
+```bash
+flutter build web --release \
+  --dart-define=API_BASE_URL=https://api.astrobank.com
+```
+
+**How It Works:**
+- File: `lib/config/app_config.dart`
+- Uses `String.fromEnvironment('API_BASE_URL', defaultValue: 'http://localhost:8000')`
+- Set at build time, baked into the app
+- No code changes needed between environments
+- Single codebase for all environments
+
+### Multiple Build Scripts
+
+Create convenient build scripts:
+
+**Development:**
+```bash
+# Run with local API
+flutter run -d web
+```
+
+**Staging Build:**
+```bash
+flutter build web --release \
+  --dart-define=API_BASE_URL=https://staging-api.astrobank.com
+```
+
+**Production Build:**
+```bash
+flutter build web --release \
+  --dart-define=API_BASE_URL=https://api.astrobank.com
+```
+
+**For Complete Environment Configuration Guide:**
+See [Environment Configuration Guide](./ENVIRONMENT_CONFIG.md) for:
+- Detailed examples
+- Build scripts setup
+- CI/CD integration
+- GitHub Actions configuration
+- Multiple environment variables
+- Troubleshooting
 
 ### Security Headers
 
