@@ -494,7 +494,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           // Avatar
                                           ClipOval(
                                             child: Image.asset(
-                                              'images/astrobank-logo-mini.png',
+                                              'assets/images/astrobank-logo-mini.png',
                                               width: 110,
                                               height: 110,
                                               fit: BoxFit.cover,

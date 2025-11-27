@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 /// Helper class for consistent asset path handling across environments
 class AssetHelper {
   /// Get the correct asset path for both development and production
@@ -15,16 +13,16 @@ class AssetHelper {
   /// 
   /// Flutter automatically prepends 'assets/' prefix
   static String image(String imageName) {
-    return 'images/$imageName';
+    return 'assets/images/$imageName';
   }
 
   /// Get all supported image paths
   static const Map<String, String> images = {
-    'logo': 'images/astrobank-logo-mini.png',
-    'pig': 'images/astrobank_pig.png',
-    'background': 'images/background.jpg',
-    'background2': 'images/background2.jpg',
-    'background3': 'images/background3.jpg',
+    'logo': 'assets/images/astrobank-logo-mini.png',
+    'pig': 'assets/images/astrobank_pig.png',
+    'background': 'assets/images/background.jpg',
+    'background2': 'assets/images/background2.jpg',
+    'background3': 'assets/images/background3.jpg',
   };
 
   /// Get image by key

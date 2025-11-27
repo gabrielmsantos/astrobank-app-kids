@@ -26,7 +26,7 @@ class SpaceBackground extends StatelessWidget {
               height: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('images/background3.jpg'),
+                  image: AssetImage('assets/images/background3.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
