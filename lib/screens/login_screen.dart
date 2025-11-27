@@ -17,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late TextEditingController _emailController;
+  late TextEditingController _usernameController;
   late TextEditingController _passwordController;
   bool _isLoading = false;
   bool _obscurePassword = true;
@@ -26,21 +26,21 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _emailController = TextEditingController();
+    _usernameController = TextEditingController();
     _passwordController = TextEditingController();
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _usernameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
   Future<void> _handleLogin() async {
-    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+    if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       setState(() {
-        _errorMessage = 'Please enter email and password';
+        _errorMessage = 'Please enter username and password';
       });
       return;
     }
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     try {
       final result = await AuthService.login(
-        email: _emailController.text,
+        username: _usernameController.text,
         password: _passwordController.text,
       );
 
@@ -124,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   const SizedBox(height: 48),
 
-                  // Email Field
+                  // Username Field
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.95),
@@ -137,11 +137,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     child: TextField(
-                      controller: _emailController,
+                      controller: _usernameController,
                       enabled: !_isLoading,
                       decoration: InputDecoration(
-                        hintText: 'Email',
-                        prefixIcon: const Icon(Icons.email, color: AppColors.primaryPurple),
+                        hintText: 'Username',
+                        prefixIcon: const Icon(Icons.person, color: AppColors.primaryPurple),
                         border: InputBorder.none,
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                       ),

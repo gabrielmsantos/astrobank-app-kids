@@ -13,7 +13,7 @@ class AppConfig {
   static const String defaultBankId = '1';
 
   // API Endpoints
-  static String get authLogin => '$apiBaseUrl/api/$apiVersion/auth/login';
+  static String get authLogin => '$apiBaseUrl/auth/customer/login';
   
   static String customerProfile(String customerId) => 
     '$apiBaseUrl/api/$apiVersion/customers/$customerId';
