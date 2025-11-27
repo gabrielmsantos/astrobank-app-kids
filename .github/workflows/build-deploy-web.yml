@@ -1,4 +1,4 @@
-name: Build and Deploy Flutter Web
+name: Build and Deploy Flutter Web (AstroBank Kids)
 
 on:
   push:
@@ -27,12 +27,9 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
-        # if your app is in a subfolder, add:
-        # working-directory: ./astrobank_app_banker
 
       - name: Build web
         run: flutter build web --release --dart-define=API_BASE_URL=$API_BASE_URL
-        # working-directory: ./astrobank_app_banker   # if needed
 
       - name: Deploy to dist branch
         uses: peaceiris/actions-gh-pages@v3
@@ -41,4 +38,3 @@ jobs:
           publish_dir: ./build/web
           publish_branch: dist
           force_orphan: true
-        # if using working-directory above, change publish_dir to that path, e.g. ./astrobank_app_banker/build/web
