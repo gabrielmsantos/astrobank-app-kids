@@ -422,13 +422,15 @@ flutter run -d web --dart-define=API_BASE_URL=http://localhost:8000
 **Staging Environment:**
 ```bash
 flutter build web --release \
-  --dart-define=API_BASE_URL=https://staging-api.astrobank.com
+  --dart-define=API_BASE_URL=https://staging-api.astrobank.com \
+  --base-href=/
 ```
 
 **Production Environment:**
 ```bash
 flutter build web --release \
-  --dart-define=API_BASE_URL=https://api.astrobank.com
+  --dart-define=API_BASE_URL=https://api.astrobank.com \
+  --base-href=/
 ```
 
 **How It Works:**

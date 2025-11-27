@@ -11,13 +11,15 @@ flutter run -d web
 ### Staging Build
 ```bash
 flutter build web --release \
-  --dart-define=API_BASE_URL=https://staging-api.astrobank.com
+  --dart-define=API_BASE_URL=https://staging-api.astrobank.com \
+  --base-href=/
 ```
 
 ### Production Build
 ```bash
 flutter build web --release \
-  --dart-define=API_BASE_URL=https://api.astrobank.com
+  --dart-define=API_BASE_URL=https://api.astrobank.com \
+  --base-href=/
 ```
 
 ---
@@ -51,13 +53,15 @@ static const String apiBaseUrl = String.fromEnvironment(
 ### Build Commands
 
 ```bash
-# Staging
+# Staging (with correct base-href)
 flutter build web --release \
-  --dart-define=API_BASE_URL=https://staging-api.astrobank.com
+  --dart-define=API_BASE_URL=https://staging-api.astrobank.com \
+  --base-href=/
 
-# Production
+# Production (with correct base-href)
 flutter build web --release \
-  --dart-define=API_BASE_URL=https://api.astrobank.com
+  --dart-define=API_BASE_URL=https://api.astrobank.com \
+  --base-href=/
 ```
 
 ---
@@ -67,9 +71,10 @@ flutter build web --release \
 ### For Production
 
 ```bash
-# 1. Build with production API
+# 1. Build with production API and correct base href
 flutter build web --release \
-  --dart-define=API_BASE_URL=https://api.astrobank.com
+  --dart-define=API_BASE_URL=https://api.astrobank.com \
+  --base-href=/
 
 # 2. Test locally (optional)
 # cd build/web && python3 -m http.server
@@ -84,9 +89,10 @@ curl -I https://astrobank-kids.web.app/
 ### For Staging
 
 ```bash
-# 1. Build with staging API
+# 1. Build with staging API and correct base href
 flutter build web --release \
-  --dart-define=API_BASE_URL=https://staging-api.astrobank.com
+  --dart-define=API_BASE_URL=https://staging-api.astrobank.com \
+  --base-href=/
 
 # 2. Deploy to staging project
 firebase deploy --project astrobank-staging
@@ -105,7 +111,8 @@ flutter test test/config_test.dart
 
 # Test with environment
 flutter test test/config_test.dart \
-  --dart-define=API_BASE_URL=https://staging-api.astrobank.com
+  --dart-define=API_BASE_URL=https://staging-api.astrobank.com \
+  --base-href=/
 ```
 
 ---
@@ -120,11 +127,12 @@ Add this to your app (development only):
 print('🔧 API Base URL: ${AppConfig.apiBaseUrl}');
 ```
 
-### Create Debug Screen
+### Create Debug Screen for Both Config and Assets
 
 ```dart
 // In any screen
 import 'package:astrobank_kids/config/app_config.dart';
+import 'package:astrobank_kids/utils/asset_helper.dart';
 
 @override
 Widget build(BuildContext context) {
@@ -133,6 +141,14 @@ Widget build(BuildContext context) {
       ListTile(
         title: Text('API Base URL'),
         subtitle: Text(AppConfig.apiBaseUrl),
+      ),
+      ListTile(
+        title: Text('Logo Asset Path'),
+        subtitle: Text(AssetHelper.image('astrobank-logo-mini.png')),
+      ),
+      ListTile(
+        title: Text('Background Asset Path'),
+        subtitle: Text(AssetHelper.image('background3.jpg')),
       ),
     ],
   );

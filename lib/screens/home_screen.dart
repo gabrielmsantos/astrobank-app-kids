@@ -1872,7 +1872,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _buildInfoRow(
             context,
             'Member Since',
-            '2024',
+            '2025',
             Icons.calendar_today_outlined,
           ),
         ],
